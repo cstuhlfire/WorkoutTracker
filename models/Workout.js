@@ -3,11 +3,38 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
-  day: Date,
+  day: {
+    type: Date,
+    default: Date.now
+  },
   exercises: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Exercise"
+      type: {
+        type: String,
+        trim: true,
+        required: "Enter an exercise type."
+      },
+      name: {
+        type: String,
+        trim: true,
+        required: "Enter an exercise name."
+      },
+      duration: {
+        type: Number,
+        required: "Enter exercise duration in minutes."
+      },
+      distance: {
+        type: Number
+      },
+      weight: {
+        type: Number
+      },
+      reps: {
+        type: Number
+      },
+      sets: {
+        type: Number
+      }
     }
   ]
 });
