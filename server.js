@@ -36,6 +36,7 @@ app.get("/api/workouts", (req, res) => {
   });
 
 
+// update workout id with new exercise
 app.put("/api/workouts/:id", (req, res) => {
   db.Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }, { new: true })
   .then(dbWorkout => {
@@ -46,7 +47,16 @@ app.put("/api/workouts/:id", (req, res) => {
   });
 });
 
-  
+app.post("/api/workouts", ({ body }, res) => {
+  db.Workout.create(body)
+      .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});  
+
 // html routes
 app.get('/exercise', (req, res) => res.sendFile(path.join(__dirname, './public/exercise.html')));
 app.get('/stats', (req, res) => res.sendFile(path.join(__dirname, './public/stats.html')));
