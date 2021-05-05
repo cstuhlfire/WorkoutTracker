@@ -23,7 +23,17 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useUnifiedTopology: true, });
 
 // routes go here
+app.get("/api/workouts", (req, res) => {
+    db.Workout.find({}).sort({day: -1}).limit(1)
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
+
 
 app.listen(PORT, () => {
-    console.log(`App running on port ${PORT}!`);
+    console.log(`App running on port ${PORT}`);
 });
