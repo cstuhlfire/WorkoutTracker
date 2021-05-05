@@ -34,7 +34,16 @@ app.get("/api/workouts", (req, res) => {
         res.json(err);
       });
   });
-
+  
+app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
 // update workout id with new exercise
 app.put("/api/workouts/:id", (req, res) => {
@@ -47,6 +56,7 @@ app.put("/api/workouts/:id", (req, res) => {
   });
 });
 
+// Create new blank workout
 app.post("/api/workouts", ({ body }, res) => {
   db.Workout.create(body)
       .then(dbWorkout => {
