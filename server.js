@@ -1,7 +1,10 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
 const path = require('path');
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
@@ -20,8 +23,10 @@ app.use(express.static("public"));
 mongoose.set('useCreateIndex', true);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { 
-    useNewUrlParser: true,
-    useUnifiedTopology: true, });
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false });
 
 // api routes
 // get most recent workout
