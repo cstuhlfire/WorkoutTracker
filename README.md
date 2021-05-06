@@ -6,6 +6,11 @@ Workout Tracker allows users to create workouts and add exercises to them. The W
 displays the most recent seven workouts and graphs the total time per workout and total weight lifted. 
 
 The specific type of exercise is also graphed by percent of total workouts.
+
+The application was developed using express server connecting to MongoDB/Mongoose.
+
+The application is deployed through Heroku connecting to AtlasDB.
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
